@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+      .response {
+        background-color: lightgrey;
+        color: black;
+        padding: 10px;
+        margin-top: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>GPT4All</h1>
+    <form method="POST" action="/submit">
+      <label for="prompt">Enter your prompt:</label><br />
+      <textarea name="prompt" id="" cols="100" rows="15">{{prompt}}</textarea>
+      <div>
+        <input type="submit" value="Submit" />
+      </div>
+    </form>
+    {% if answer %}
+    <h2>Prompt:</h2>
+    <p>{{ prompt }}</p>
+    <div class="response">
+      <strong>Response:</strong>
+      <p>{{ answer }}</p>
+    </div>
+    {% endif %}
+
+    <h2>Parameters for generate function</h2>
+    <pre>
+prompt: This is the input to the generative model that the function will use to generate new data. It could be a sentence, a paragraph, an 
+image, or any other type of data that the model was trained on.
+
+seed: This parameter is used to set the random seed for the generative model. Setting a specific seed value will cause the model to generate 
+the same output each time it is run with that seed value. If the seed value is not provided, it will be set to a random value.
+
+n_threads: This parameter sets the number of threads that the function will use to generate new data. If set to -1, the function will use all 
+available threads.
+
+n_predict: This parameter determines the number of tokens that the generative model will predict. The function will stop generating new data 
+after this many tokens have been predicted.
+
+top_k: This parameter limits the number of tokens that the generative model can choose from when generating new data. Only the top k tokens 
+with the highest probability will be considered.
+
+top_p: This parameter limits the cumulative probability distribution of the tokens that the generative model can choose from when generating 
+new data. Only the tokens with a cumulative probability distribution of top_p or less will be considered.
+
+temp: This parameter controls the "temperature" of the generative model. A higher temperature will result in more diverse and unpredictable 
+output, while a lower temperature will result in more predictable output.
+
+repeat_penalty: This parameter penalizes the generative model for repeating the same token multiple times in a row. A higher penalty will 
+result in less repetition.
+
+repeat_last_n: This parameter determines the number of tokens that the generative model will consider when checking for repetition. Only the 
+last n tokens will be considered.
+
+n_batch: This parameter sets the batch size for generating new data. A higher batch size will result in faster generation, but may require 
+more memory.
+
+reset: This parameter determines whether or not the internal state of the generative model will be reset before generating new data.
+
+callback: This parameter is a function that will be called after each batch of data is generated. It can be used to monitor the progress of 
+the generation process or to modify the generated data.
+    </pre>
+  </body>
+</html>
